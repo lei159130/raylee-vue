@@ -12,17 +12,17 @@
       </div>
     </div>
     <div class="audio_control">
-      <audio class="J-audio" :src="props.audioUrl">
+      <audio class="J-audio" :src="current.audioUrl">
         本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(
         <a href="https://www.google.com/chrome/">Chrome</a>
         )浏览器，或者其他游览器的最新版本。
       </audio>
-      <span class="audio_head">{{ props.title }}</span>
+      <span class="audio_head">{{ current.title }}</span>
       <span class="audio_player">
-        <i class="fa fa-backward" @click="requestData(props.id)"></i>
+        <i class="fa fa-backward" v-if="prev" @click="requestData(current.id)"></i>
         <i class="fa fa-play" @click="play" v-if="playing"></i>
         <i class="fa fa-pause" @click="pause" v-else></i>
-        <i class="fa fa-forward" @click="requestData(props.id)"></i>
+        <i class="fa fa-forward" v-if="next" @click="requestData(current.id)"></i>
       </span>
       <span class="audio_time J-audio-time">
         <span>{{ time.minute | formatNumber }}</span>
@@ -35,7 +35,7 @@
       </span>
     </div>
     <div class="article-container share-container wrapper-position">
-      <div class="article" v-html="props.content"></div>
+      <div class="article" v-html="current.content"></div>
     </div>
   </div>
 </template>
@@ -47,7 +47,9 @@ export default {
       audio: {},
       menus: [],
       seminarId: "",
-      props: {},
+      prev: {},
+      current: {},
+      next: {},
       playing: true,
       time: { minute: 0, second: 0 },
       maxTime: { minute: "", second: "" },
@@ -60,24 +62,40 @@ export default {
   },
   methods: {
     requestMenus() {
-      let _vm = this;
-      _vm.$http.post("sysConfig/menus").then(res => {
-        _vm.menus = res.data.data;
-        _vm.seminarId = _vm.menus[_vm.menus.length - 1].id;
-        _vm.requestData();
+      let vm = this;
+      vm.$http.post("sysConfig/menus").then(res => {
+        vm.menus = res.data.data;
+        vm.seminarId = vm.menus[vm.menus.length - 1].id;
+        vm.requestData();
       });
     },
     requestData(id) {
-      let _vm = this;
-      _vm.$http
+      let vm = this;
+      vm.$http
         .post("peopleDaily/query", {
-          seminarId: _vm.seminarId,
+          seminarId: vm.seminarId,
           id: id
         })
         .then(res => {
-          _vm.props = res.data.data[0];
-          let time = _vm.props.audioPlayTime.split(":");
-          _vm.maxTime = {
+          let index = _.findIndex(res.data.data, { id: id });
+          if (index == -1) {
+            index = 0;
+          }
+
+          try {
+            vm.prev = res.data.data[index - 1];
+          } catch (error) {
+            vm.prev = undefined;
+          }
+          vm.current = res.data.data[index];
+          try {
+            vm.next = res.data.data[index + 1];
+          } catch (error) {
+            vm.next = undefined;
+          }
+
+          let time = vm.current.audioPlayTime.split(":");
+          vm.maxTime = {
             minute: parseInt(time[0]),
             second: parseInt(time[1])
           };
