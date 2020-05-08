@@ -1,0 +1,51 @@
+{
+  "id": "1181664",
+  "name": "work",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7685161",
+      "name": "listen",
+      "font_class": "listen",
+      "unicode": "e707",
+      "unicode_decimal": 59143
+    },
+    {
+      "icon_id": "431779",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e709",
+      "unicode_decimal": 59145
+    },
+    {
+      "icon_id": "599914",
+      "name": "QQ",
+      "font_class": "qq",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "1024175",
+      "name": "image_wechat",
+      "font_class": "imagewechat",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "9004942",
+      "name": "message",
+      "font_class": "message",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "10043876",
+      "name": "Message",
+      "font_class": "Message",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    }
+  ]
+}
