@@ -34,7 +34,7 @@
         <span>{{ maxTime.second | formatNumber }}</span>
       </span>
     </div>
-    <div class="article-container share-container wrapper-position">
+    <div class="article-container">
       <div class="article" v-html="current.content"></div>
     </div>
   </div>
@@ -52,7 +52,7 @@ export default {
       next: {},
       playing: true,
       time: { minute: 0, second: 0 },
-      maxTime: { minute: "", second: "" },
+      maxTime: { minute: 0, second: 0 },
       timer: {}
     };
   },
@@ -88,6 +88,7 @@ export default {
             vm.prev = undefined;
           }
           vm.current = res.data.data[index];
+          document.title = vm.current.title;
           try {
             vm.next = res.data.data[index + 1];
           } catch (error) {
@@ -147,13 +148,14 @@ export default {
 <style lang="less" scope>
 @import url("//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css");
 .container {
-  min-width: 450px;
+  min-width: 400px;
   .nav {
     width: 100%;
     height: 55px;
     background: #e60012;
     line-height: 55px;
     .w1000 {
+      max-width: 1024px;
       line-height: 55px;
       position: relative;
       margin: 0 auto;
@@ -174,12 +176,14 @@ export default {
   .audio_control {
     display: block;
     position: relative;
+    max-width: 1024px;
     height: 110px;
     background: #f3f3f3;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
     padding: 7px 14px;
+    margin: 0 auto;
     .audio_player {
       display: block;
       width: 200px;
@@ -211,6 +215,44 @@ export default {
       line-height: 24px;
       text-align: center;
       margin-top: 12px;
+    }
+  }
+
+  .article-container {
+    position: relative;
+    max-width: 1024px;
+    min-height: 0;
+    padding-bottom: 34px;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: top 0.1s ease;
+    margin: 0 auto;
+    .article {
+      text-align: left;
+      color: #2f2f2f;
+      padding: 0 18px;
+      font-size: 18px;
+      line-height: 1.56em;
+      text-align: justify;
+      word-wrap: break-word;
+      word-break: normal;
+      background-color: transparent;
+      * {
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.25em;
+      }
+      p {
+        padding-top: 12px;
+        strong,
+        b {
+          font-weight: bold;
+        }
+      }
     }
   }
 }

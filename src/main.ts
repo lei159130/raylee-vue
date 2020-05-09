@@ -5,11 +5,13 @@ import store from "@/store";
 import axios from "axios";
 import Vue from "vue";
 import VueAxios from "vue-axios";
+import _ from "lodash";
 
 Vue.config.productionTip = false;
-
+Vue.prototype._ = _;
 Vue.use(VueAxios, axios);
-axios.defaults.baseURL = "http://localhost:8081";
+
+axios.defaults.baseURL = "http://www.lee1314.com:8081";
 
 new Vue({
   router,
