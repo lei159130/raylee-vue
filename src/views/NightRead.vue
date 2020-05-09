@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="nav">
       <div class="w1000">
         <a
@@ -19,10 +19,10 @@
       </audio>
       <span class="audio_head">{{ current.title }}</span>
       <span class="audio_player">
-        <i class="fa fa-backward" v-if="prev" @click="requestData(current.id)"></i>
+        <i class="fa fa-backward" v-if="prev" @click="requestData(prev.id)"></i>
         <i class="fa fa-play" @click="play" v-if="playing"></i>
         <i class="fa fa-pause" @click="pause" v-else></i>
-        <i class="fa fa-forward" v-if="next" @click="requestData(current.id)"></i>
+        <i class="fa fa-forward" v-if="next" @click="requestData(next.id)"></i>
       </span>
       <span class="audio_time J-audio-time">
         <span>{{ time.minute | formatNumber }}</span>
@@ -77,7 +77,7 @@ export default {
           id: id
         })
         .then(res => {
-          let index = _.findIndex(res.data.data, { id: id });
+          let index = vm._.findIndex(res.data.data, { id: id });
           if (index == -1) {
             index = 0;
           }
@@ -146,69 +146,72 @@ export default {
 </script>
 <style lang="less" scope>
 @import url("//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css");
-.nav {
-  width: 100%;
-  height: 55px;
-  background: #e60012;
-  line-height: 55px;
-  .w1000 {
+.container {
+  min-width: 450px;
+  .nav {
+    width: 100%;
+    height: 55px;
+    background: #e60012;
     line-height: 55px;
-    position: relative;
-    margin: 0 auto;
-    text-align: center;
-    a {
-      display: inline-block;
-      color: #fff;
-      margin: 0 5px 0 5px;
-      font-size: 14px;
-      font-family: "SimSun";
-    }
-    .active {
-      color: #000;
+    .w1000 {
+      line-height: 55px;
+      position: relative;
+      margin: 0 auto;
+      text-align: center;
+      a {
+        display: inline-block;
+        color: #fff;
+        margin: 0 5px 0 5px;
+        font-size: 14px;
+        font-family: "SimSun";
+      }
+      .active {
+        color: #000;
+      }
     }
   }
-}
 
-.audio_control {
-  display: block;
-  position: relative;
-  height: 110px;
-  background: #f3f3f3;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  padding: 7px 14px;
-  .audio_player {
+  .audio_control {
     display: block;
-    width: 200px;
-    height: 32px;
-    margin: 14px auto 0;
-    text-align: center;
-    i {
-      background-position: center center;
-      background-repeat: no-repeat;
-      padding: 10px;
-      color: gray;
-      font-size: 22px;
+    position: relative;
+    height: 110px;
+    background: #f3f3f3;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    padding: 7px 14px;
+    .audio_player {
+      display: block;
+      width: 200px;
+      height: 32px;
+      margin: 14px auto 0;
+      text-align: center;
+      i {
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding: 10px;
+        color: gray;
+        font-size: 22px;
+      }
     }
-  }
-  .audio_head {
-    font-size: 18px;
-    color: #000;
-    line-height: 24px;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-  }
-  .audio_time {
-    display: block;
-    font-size: 16px;
-    color: #717171;
-    line-height: 24px;
-    text-align: center;
-    margin-top: 12px;
+    .audio_head {
+      font-size: 18px;
+      color: #000;
+      line-height: 24px;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+    .audio_time {
+      display: block;
+      font-size: 16px;
+      color: #717171;
+      line-height: 24px;
+      text-align: center;
+      margin-top: 12px;
+    }
   }
 }
 </style>
