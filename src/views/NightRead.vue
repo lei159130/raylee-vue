@@ -100,6 +100,8 @@ export default {
             minute: parseInt(time[0]),
             second: parseInt(time[1])
           };
+          vm.time = { minute: 0, second: 0 };
+          vm.pause();
         });
     },
     chooseSeminarId(id) {
@@ -108,12 +110,12 @@ export default {
     },
     play() {
       this.timer = window.setInterval(this.refreshTime, 1000);
-      this.playing = !this.playing;
+      this.playing = false;
       this.audio.play();
     },
     pause() {
       window.clearInterval(this.timer);
-      this.playing = !this.playing;
+      this.playing = true;
       this.audio.pause();
     },
     refreshTime() {
