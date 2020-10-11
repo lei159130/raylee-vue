@@ -6,12 +6,15 @@ import axios from "axios";
 import Vue from "vue";
 import VueAxios from "vue-axios";
 import _ from "lodash";
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 
 Vue.config.productionTip = false;
 Vue.prototype._ = _;
 Vue.use(VueAxios, axios);
+Vue.use(ElementUI);
 
-axios.defaults.baseURL = "http://www.lee1314.com:8081";
+axios.defaults.baseURL = "http://127.0.0.1:8081";
 
 new Vue({
   router,

@@ -1,10 +1,24 @@
 {
-  "id": "1181664",
-  "name": "work",
+  "id": "",
+  "name": "",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
+    {
+      "icon_id": "3876283",
+      "name": "wechat",
+      "font_class": "wechat",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "3876518",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
     {
       "icon_id": "7685161",
       "name": "listen",
@@ -13,39 +27,25 @@
       "unicode_decimal": 59143
     },
     {
-      "icon_id": "431779",
-      "name": "github",
-      "font_class": "github",
-      "unicode": "e709",
-      "unicode_decimal": 59145
+      "icon_id": "7736048",
+      "name": "file",
+      "font_class": "file",
+      "unicode": "e8e6",
+      "unicode_decimal": 59622
     },
     {
-      "icon_id": "599914",
+      "icon_id": "11349237",
       "name": "QQ",
-      "font_class": "qq",
-      "unicode": "e66a",
-      "unicode_decimal": 58986
+      "font_class": "QQ",
+      "unicode": "e651",
+      "unicode_decimal": 58961
     },
     {
-      "icon_id": "1024175",
-      "name": "image_wechat",
-      "font_class": "imagewechat",
-      "unicode": "e684",
-      "unicode_decimal": 59012
-    },
-    {
-      "icon_id": "9004942",
+      "icon_id": "13253909",
       "name": "message",
       "font_class": "message",
-      "unicode": "e627",
-      "unicode_decimal": 58919
-    },
-    {
-      "icon_id": "10043876",
-      "name": "Message",
-      "font_class": "Message",
-      "unicode": "e628",
-      "unicode_decimal": 58920
+      "unicode": "e613",
+      "unicode_decimal": 58899
     }
   ]
 }

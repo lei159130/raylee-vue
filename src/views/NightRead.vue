@@ -7,8 +7,9 @@
           :key="menu.id"
           href="javascript:void(0)"
           @click="chooseSeminarId(menu.id)"
-          :class="{ 'active':menu.id==seminarId }"
-        >{{ menu.name }}</a>
+          :class="{ active: menu.id == seminarId }"
+          >{{ menu.name }}</a
+        >
       </div>
     </div>
     <div class="audio_control">

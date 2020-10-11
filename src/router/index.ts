@@ -21,9 +21,25 @@ const routes = [
     }
   },
   {
+    path: "/file",
+    name: "File",
+    component: () => import("@/views/File.vue"),
+    meta: {
+      title: "文件管理"
+    }
+  },
+  {
+    path: "/error",
+    name: "Error",
+    component: () => import("@/views/500.vue"),
+    meta: {
+      title: "500-系统异常"
+    }
+  },
+  {
     path: "*",
     name: "NotFound",
-    component: () => import("@/views/NotFound.vue"),
+    component: () => import("@/views/404.vue"),
     meta: {
       title: "404-对不起！您访问的页面不存在"
     }
