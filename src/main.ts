@@ -14,7 +14,7 @@ Vue.prototype._ = _;
 Vue.use(VueAxios, axios);
 Vue.use(ElementUI);
 
-axios.defaults.baseURL = "http://127.0.0.1:8081";
+axios.defaults.baseURL = "https://www.lee1314.com/api";
 
 new Vue({
   router,
@@ -23,6 +23,11 @@ new Vue({
 }).$mount("#app");
 
 router.beforeEach((to, from, next) => {
+  if (to.path) {
+    if (window._hmt) {
+      window._hmt.push(["_trackPageview", "/#" + to.fullPath]);
+    }
+  }
   if (to.meta.title) {
     document.title = to.meta.title;
   }
