@@ -21,14 +21,6 @@ const routes = [
     }
   },
   {
-    path: "/file",
-    name: "File",
-    component: () => import("@/views/File.vue"),
-    meta: {
-      title: "文件管理"
-    }
-  },
-  {
     path: "/error",
     name: "Error",
     component: () => import("@/views/500.vue"),
