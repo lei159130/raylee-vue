@@ -1,53 +1,67 @@
 <template>
-  <div class="container">
-    <div class="nav">
-      <div class="w1000">
-        <a
-          v-for="menu in menus"
-          :key="menu.id"
-          href="javascript:void(0)"
-          @click="chooseSeminarId(menu.id)"
-          :class="{ active: menu.id == seminarId }"
-          >{{ menu.name }}</a
-        >
+  <div>
+    <div class="container">
+      <div class="nav">
+        <div class="w1000">
+          <a
+            v-for="menu in menus"
+            :key="menu.id"
+            href="javascript:void(0)"
+            @click="chooseSeminarId(menu.id)"
+            :class="{ active: menu.id == seminarId }"
+            >{{ menu.name }}</a
+          >
+        </div>
+      </div>
+      <div class="audio_control">
+        <audio class="J-audio" :src="current.audioUrl">
+          本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(
+          <a href="https://www.google.com/chrome/">Chrome</a>
+          )浏览器，或者其他游览器的最新版本。
+        </audio>
+        <span class="audio_head">{{ current.title }}</span>
+        <span class="audio_player">
+          <i
+            class="fa fa-backward"
+            v-if="prev"
+            @click="requestData(prev.id)"
+          ></i>
+          <i class="fa fa-play" @click="play" v-if="playing"></i>
+          <i class="fa fa-pause" @click="pause" v-else></i>
+          <i
+            class="fa fa-forward"
+            v-if="next"
+            @click="requestData(next.id)"
+          ></i>
+        </span>
+        <span class="audio_time J-audio-time">
+          <span>{{ time.minute | formatNumber }}</span>
+          :
+          <span>{{ time.second | formatNumber }}</span>
+          &nbsp;/&nbsp;
+          <span>{{ maxTime.minute | formatNumber }}</span>
+          :
+          <span>{{ maxTime.second | formatNumber }}</span>
+        </span>
+      </div>
+      <div class="article-container">
+        <div class="article" v-html="current.content"></div>
       </div>
     </div>
-    <div class="audio_control">
-      <audio class="J-audio" :src="current.audioUrl">
-        本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(
-        <a href="https://www.google.com/chrome/">Chrome</a>
-        )浏览器，或者其他游览器的最新版本。
-      </audio>
-      <span class="audio_head">{{ current.title }}</span>
-      <span class="audio_player">
-        <i class="fa fa-backward" v-if="prev" @click="requestData(prev.id)"></i>
-        <i class="fa fa-play" @click="play" v-if="playing"></i>
-        <i class="fa fa-pause" @click="pause" v-else></i>
-        <i class="fa fa-forward" v-if="next" @click="requestData(next.id)"></i>
-      </span>
-      <span class="audio_time J-audio-time">
-        <span>{{ time.minute | formatNumber }}</span>
-        :
-        <span>{{ time.second | formatNumber }}</span>
-        &nbsp;/&nbsp;
-        <span>{{ maxTime.minute | formatNumber }}</span>
-        :
-        <span>{{ maxTime.second | formatNumber }}</span>
-      </span>
+    <div class="footer" role="footer">
+      <a
+        target="_blank"
+        href="https://beian.miit.gov.cn"
+        rel="noopener noreferrer"
+        title="蜀ICP备18038865号-1"
+        >蜀ICP备18038865号-1</a
+      >
     </div>
-    <div class="article-container">
-      <div class="article" v-html="current.content"></div>
-    </div>
-    <footer-widget></footer-widget>
   </div>
 </template>
 <script>
-import footerWidget from '@/views/Footer';
 export default {
   name: 'NightRead',
-  components: {
-    footerWidget
-  },
   data() {
     return {
       audio: {},
@@ -263,6 +277,18 @@ export default {
         }
       }
     }
+  }
+}
+.footer {
+  width: 100%;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: #333;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    -moz-user-focus: none;
+    -moz-user-select: none;
   }
 }
 </style>
