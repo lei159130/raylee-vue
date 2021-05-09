@@ -28,18 +28,20 @@
         <router-link to="/nr" title="夜读">
           <span class="icon iconfont">&#xe707;</span>
         </router-link>
-        <a title="文件系统" href="javascript:void(0);" @click="login">
-          <span class="icon iconfont">&#xe8e6;</span>
-        </a>
       </div>
       <img v-if="wechat.show" class="wechat" :src="wechat.img" />
     </div>
+    <footer-widget></footer-widget>
   </div>
 </template>
 <script>
-import wechatImg from "@/assets/img/wechat.jpg";
+import footerWidget from '@/views/Footer';
+import wechatImg from '@/assets/img/wechat.jpg';
 export default {
-  name: "Home",
+  name: 'Home',
+  components: {
+    footerWidget
+  },
   data() {
     return {
       wechat: {
@@ -51,38 +53,6 @@ export default {
   methods: {
     toggleWechat(bool) {
       this.wechat.show = bool;
-    },
-    login() {
-      this.$prompt("请输入密码", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        inputType: "password",
-        inputPattern: /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,20}$/,
-        inputPlaceholder: "请输入密码",
-        inputErrorMessage: "密码格式不正确"
-      })
-        .then(({ value }) => {
-          this.$http
-            .post("auth/login", {
-              password: value
-            })
-            .then(res => {
-              if (res.data.code != 0) {
-                this.$message({
-                  type: "error",
-                  message: res.data.msg
-                });
-                return;
-              }
-              this.$router.push({
-                path: "/file",
-                query: {
-                  token: res.data.data
-                }
-              });
-            });
-        })
-        .catch(() => {});
     }
   }
 };

@@ -38,16 +38,21 @@
     <div class="article-container">
       <div class="article" v-html="current.content"></div>
     </div>
+    <footer-widget></footer-widget>
   </div>
 </template>
 <script>
+import footerWidget from '@/views/Footer';
 export default {
-  name: "NightRead",
+  name: 'NightRead',
+  components: {
+    footerWidget
+  },
   data() {
     return {
       audio: {},
       menus: [],
-      seminarId: "",
+      seminarId: '',
       prev: {},
       current: {},
       next: {},
@@ -58,13 +63,13 @@ export default {
     };
   },
   mounted() {
-    this.audio = document.getElementsByClassName("J-audio")[0];
+    this.audio = document.getElementsByClassName('J-audio')[0];
     this.requestMenus();
   },
   methods: {
     requestMenus() {
       let vm = this;
-      vm.$http.post("sysConfig/menus").then(res => {
+      vm.$http.post('sysConfig/menus').then((res) => {
         vm.menus = res.data.data;
         vm.seminarId = vm.menus[vm.menus.length - 1].id;
         vm.requestData();
@@ -73,11 +78,11 @@ export default {
     requestData(id) {
       let vm = this;
       vm.$http
-        .post("peopleDaily/query", {
+        .post('peopleDaily/query', {
           seminarId: vm.seminarId,
           id: id
         })
-        .then(res => {
+        .then((res) => {
           let index = vm._.findIndex(res.data.data, { id: id });
           if (index == -1) {
             index = 0;
@@ -96,7 +101,7 @@ export default {
             vm.next = undefined;
           }
 
-          let time = vm.current.audioPlayTime.split(":");
+          let time = vm.current.audioPlayTime.split(':');
           vm.maxTime = {
             minute: parseInt(time[0]),
             second: parseInt(time[1])
@@ -140,16 +145,16 @@ export default {
   filters: {
     formatNumber(value) {
       if (value < 10) {
-        return "0" + value;
+        return '0' + value;
       } else {
-        return "" + value;
+        return '' + value;
       }
     }
   }
 };
 </script>
 <style lang="less" scope>
-@import url("//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css');
 .container {
   min-width: 400px;
   .nav {
@@ -168,7 +173,8 @@ export default {
         color: #fff;
         margin: 0 5px 0 5px;
         font-size: 14px;
-        font-family: "SimSun";
+        font-family: -apple-system, SF UI Text, Arial, PingFang SC,
+          Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
       }
       .active {
         color: #000;
