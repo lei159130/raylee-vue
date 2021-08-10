@@ -45,25 +45,25 @@
   </div>
 </template>
 <script>
-import wechatImg from '@/assets/img/wechat.jpg';
+import wechatImg from "@/assets/img/wechat.jpg";
 export default {
-  name: 'Home',
+  name: "Home",
   data() {
     return {
       wechat: {
         show: false,
-        img: wechatImg
-      }
+        img: wechatImg,
+      },
     };
   },
   methods: {
     toggleWechat(bool) {
       this.wechat.show = bool;
-    }
-  }
+    },
+  },
 };
 </script>
-<style lang="less" scope>
+<style lang="less" scoped>
 @import url(~@/assets/iconfont/iconfont.css);
 .wapper {
   height: 100vh;
@@ -110,9 +110,7 @@ export default {
     text-decoration: none;
     color: #333;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    -webkit-user-select: none;
     -moz-user-focus: none;
-    -moz-user-select: none;
   }
 }
 </style>

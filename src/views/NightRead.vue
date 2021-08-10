@@ -45,7 +45,7 @@
         </span>
       </div>
       <div class="article-container">
-        <div class="article" v-html="current.content"></div>
+        <div class="article" v-html="current.contents"></div>
       </div>
     </div>
     <div class="footer" role="footer">
@@ -167,7 +167,7 @@ export default {
   }
 };
 </script>
-<style lang="less" scope>
+<style lang="less" scoped>
 @import url('//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css');
 .container {
   min-width: 400px;
@@ -286,9 +286,7 @@ export default {
     text-decoration: none;
     color: #333;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    -webkit-user-select: none;
     -moz-user-focus: none;
-    -moz-user-select: none;
   }
 }
 </style>
